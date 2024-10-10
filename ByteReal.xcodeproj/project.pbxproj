@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		7DC623642CB7389F00710B9C /* ParseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7DC623632CB7389F00710B9C /* ParseSwift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		7DC182472CB719F000ADEEBC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DC623642CB7389F00710B9C /* ParseSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +117,7 @@
 			);
 			name = ByteReal;
 			packageProductDependencies = (
+				7DC623632CB7389F00710B9C /* ParseSwift */,
 			);
 			productName = ByteReal;
 			productReference = 7DC182362CB719E500ADEEBC /* ByteReal.app */;
@@ -195,6 +201,9 @@
 			);
 			mainGroup = 7DC1822D2CB719E400ADEEBC;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				7DC623622CB7389F00710B9C /* XCRemoteSwiftPackageReference "Parse-Swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 7DC182372CB719E500ADEEBC /* Products */;
 			projectDirPath = "";
@@ -396,7 +405,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ByteReal/Preview Content\"";
+				DEVELOPMENT_TEAM = L6U8T4WFP6;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)",
+					"$(inherited)",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -424,7 +438,9 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ByteReal/Preview Content\"";
+				DEVELOPMENT_TEAM = L6U8T4WFP6;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -552,6 +568,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7DC623622CB7389F00710B9C /* XCRemoteSwiftPackageReference "Parse-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/parse-community/Parse-Swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.14.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7DC623632CB7389F00710B9C /* ParseSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7DC623622CB7389F00710B9C /* XCRemoteSwiftPackageReference "Parse-Swift" */;
+			productName = ParseSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7DC1822E2CB719E400ADEEBC /* Project object */;
 }
