@@ -11,6 +11,9 @@ import ParseSwift
 @main
 struct ByteRealApp: App {
     init() {
+        // Connecting AppDelegate with SwiftUI
+        @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    
         let serverConfigUrl = URL(filePath: "https://parseapi.back4app.com")
 //        ParseConfiguration(applicationId: "LLljWJoLMXtRvieB5IZAODCGGOoYNDjotzqYm5xW", clientKey: "YpCHLkbnTd5eXzW2Tam2QlC9efbm6xPK4di5JLS", serverURL: serverConfigUrl)
 //        
