@@ -5,32 +5,30 @@
 //  Created by Victoria Nunez on 10/9/24.
 //
 
-import ParseSwift
 import SwiftUI
+import ParseSwift
 
-struct Post: ParseObject {
-    var originalData: Data?
+public struct Post: ParseObject {
+    public var originalData: Data?
+    public var ACL: ParseACL?
     
-    init() {
+    // Required fields
+    public var objectId: String?
+    public var text: String
+    public var codeSnippet: String? // Optional code snippet property
+    public var isPrivate: Bool
+    public var user: User? // Relation to User
+    public var createdAt: Date?
+    public var updatedAt: Date?
+    
+    // Public initializer
+    public init() {
         self.objectId = nil
         self.text = ""
-        self.image = nil
+        self.codeSnippet = nil
         self.isPrivate = false
         self.user = nil
         self.createdAt = nil
         self.updatedAt = nil
     }
-    
-    var ACL: ParseACL?
-    
-    // Required fields
-    var objectId: String?
-    var text: String
-    var image: Data? // Store image as Data
-    var isPrivate: Bool
-    var user: User? // Relation to User
-    var createdAt: Date?
-    var updatedAt: Date?
-    
-    // Other necessary methods and properties can be added as needed
 }
