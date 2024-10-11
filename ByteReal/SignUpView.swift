@@ -17,43 +17,95 @@ struct SignUpView: View {
 
     var body: some View {
         NavigationView {
-            VStack(spacing: 20) {
-                TextField("Username", text: $username)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding(.horizontal)
-                    .autocapitalization(.none)
+            ZStack {
+                // Background color
+                Color.black.edgesIgnoringSafeArea(.all) // Black background
+                
+                VStack(spacing: 20) {
+                    // Logo or Title (Optional)
+                    Text("Create Account")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .foregroundColor(.purple) // Purple text for title
+                        .padding(.top, 40)
 
-                TextField("Email", text: $email)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding(.horizontal)
-                    .keyboardType(.emailAddress)
-                    .autocapitalization(.none)
-
-                SecureField("Password", text: $password)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding(.horizontal)
-
-                SecureField("Confirm Password", text: $confirmPassword)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding(.horizontal)
-
-                if let error = signUpError {
-                    Text(error)
-                        .foregroundColor(.red)
-                        .padding(.horizontal)
-                }
-
-                Button(action: signUp) {
-                    Text("Sign Up")
-                        .frame(maxWidth: .infinity)
+                    // Username Field
+                    TextField("Username", text: $username)
                         .padding()
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
+                        .background(Color.clear) // Transparent background
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.purple, lineWidth: 2) // Purple border
+                        )
+                        .autocapitalization(.none)
+                        .foregroundColor(.white) // Text color for input
+                        .placeholder(when: username.isEmpty) {
+                            Text("Username").foregroundColor(.white.opacity(0.5))
+                        }
+
+                    // Email Field
+                    TextField("Email", text: $email)
+                        .padding()
+                        .background(Color.clear) // Transparent background
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.purple, lineWidth: 2) // Purple border
+                        )
+                        .keyboardType(.emailAddress)
+                        .autocapitalization(.none)
+                        .foregroundColor(.white) // Text color for input
+                        .placeholder(when: email.isEmpty) {
+                            Text("Email").foregroundColor(.white.opacity(0.5))
+                        }
+
+                    // Password Field
+                    SecureField("Password", text: $password)
+                        .padding()
+                        .background(Color.clear) // Transparent background
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.purple, lineWidth: 2) // Purple border
+                        )
+                        .foregroundColor(.white) // Text color for input
+                        .placeholder(when: password.isEmpty) {
+                            Text("Password").foregroundColor(.white.opacity(0.5))
+                        }
+
+                    // Confirm Password Field
+                    SecureField("Confirm Password", text: $confirmPassword)
+                        .padding()
+                        .background(Color.clear) // Transparent background
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.purple, lineWidth: 2) // Purple border
+                        )
+                        .foregroundColor(.white) // Text color for input
+                        .placeholder(when: confirmPassword.isEmpty) {
+                            Text("Confirm Password").foregroundColor(.white.opacity(0.5))
+                        }
+
+                    // Display error message
+                    if let error = signUpError {
+                        Text(error)
+                            .foregroundColor(.red)
+                            .padding(.horizontal)
+                    }
+
+                    // Sign Up Button
+                    Button(action: signUp) {
+                        Text("Sign Up")
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.purple) // Purple background
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                            .font(.headline) // Font style for button
+                    }
+                    .padding(.horizontal)
                 }
-                .padding(.horizontal)
+                .padding() // Optional: Add some padding to the VStack
             }
-            .navigationTitle("Sign Up")
+            .navigationTitle("") // Hide the title
             .navigationBarItems(trailing: Button("Done") {
                 presentationMode.wrappedValue.dismiss()
             })
@@ -116,7 +168,8 @@ struct SignUpView: View {
 
     private func isValidEmail(_ email: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
-        let predicate = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        let predicate = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
         return predicate.evaluate(with: email)
     }
 }
+

@@ -18,7 +18,7 @@ struct ByteRealApp: App {
     
 //        let serverConfigUrl = URL(filePath: "https://parseapi.back4app.com")
 ////        ParseConfiguration(applicationId: "LLljWJoLMXtRvieB5IZAODCGGOoYNDjotzqYm5xW", clientKey: "YpCHLkbnTd5eXzW2Tam2QlC9efbm6xPK4di5JLS", serverURL: serverConfigUrl)
-////        
+////
 //        ParseSwift.initialize(applicationId: "LLljWJoLMXtRvieB5IZAODCGGOoYNDjotzqYm5xW",
 //                                      clientKey: "YpCHLkbnTd5eXzW2Tam2QlC9efbm6xPK4di5JLS",
 //                              masterKey: "Xbq1YBBr5EgCtigibXzZRWyR0BbLi6SXdLMOGP8B",
