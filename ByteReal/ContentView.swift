@@ -12,10 +12,9 @@ struct ContentView: View {
     
     var body: some View {
         if isLoggedIn {
-            HomeView()
+            HomeView(isLoggedIn: $isLoggedIn)
         } else {
-           // LoginView(isLoggedIn: $isLoggedIn)
-            HomeView()
+            LoginView(isLoggedIn: $isLoggedIn)
         }
     }
 }

@@ -6,7 +6,7 @@
 //
 import SwiftUI
 import UserNotifications
-
+import ParseSwift
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     
@@ -25,6 +25,10 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         
         sendDailyNotification() // Schedule the 6 PM notification
     
+        ParseSwift.initialize(applicationId: "LLljWJoLMXtRvieB5IZAODCGGOoYNDjotzqYm5xW",
+                              clientKey: "YpCHLkbnTd5eXzW2Tam2QlC9efbm6xPK4di5JLSV",
+                              serverURL: URL(string: "https://parseapi.back4app.com")!)
+
         return true
     }
     

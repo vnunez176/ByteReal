@@ -61,18 +61,19 @@ struct LoginView: View {
     }
     
     private func login() {
-        // Handle login with Parse
-        User.login(username: username, password: password) { result in
-            switch result {
-            case .success:
-                // Update login state on the main thread
-                DispatchQueue.main.async {
-                    isLoggedIn = true
+            User.login(username: username, password: password) { result in
+                switch result {
+                case .success:
+                    // Update login state on the main thread
+                    DispatchQueue.main.async {
+                        isLoggedIn = true
+                    }
+                case .failure(let error):
+                    // Handle login error
+                    loginError = error.localizedDescription
+                    print("Login failed with error: \(error.localizedDescription)")
+                    print("Error details: \(error)")
                 }
-            case .failure(let error):
-                // Handle login error
-                loginError = error.localizedDescription
             }
         }
     }
-}
