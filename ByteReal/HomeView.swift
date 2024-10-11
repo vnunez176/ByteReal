@@ -48,6 +48,7 @@ struct HomeView: View {
                     createPost()
                 }
                 .padding()
+                .disabled(isLocked) // Optionally disable the post button as well
                 
                 Button("Logout") {
                     logoutUser()
