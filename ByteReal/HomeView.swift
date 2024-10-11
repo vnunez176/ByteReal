@@ -9,7 +9,7 @@ import SwiftUI
 import ParseSwift
 
 struct HomeView: View {
-    @Binding var isLoggedIn: Bool
+    //@Binding var isLoggedIn: Bool
     @State private var posts: [Post] = []
     @State private var newPostText = ""
     @State private var newPostImage: UIImage?
@@ -97,6 +97,7 @@ struct HomeView: View {
     }
 
     private func logoutUser() {
+        /*
         User.logout { result in
             switch result {
             case .success:
@@ -105,5 +106,10 @@ struct HomeView: View {
                 print("Logout failed: \(error.localizedDescription)")
             }
         }
+         */
     }
+    
+    
+    
+    
 }
