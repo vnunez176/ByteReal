@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2DAE592C2CB9D09D003FD41D /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DAE592B2CB9D09D003FD41D /* UserNotifications.framework */; };
 		7DC623642CB7389F00710B9C /* ParseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7DC623632CB7389F00710B9C /* ParseSwift */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2DAE592B2CB9D09D003FD41D /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		7DC182362CB719E500ADEEBC /* ByteReal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ByteReal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DC182462CB719F000ADEEBC /* ByteRealTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ByteRealTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DC182502CB719F000ADEEBC /* ByteRealUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ByteRealUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DAE592C2CB9D09D003FD41D /* UserNotifications.framework in Frameworks */,
 				7DC623642CB7389F00710B9C /* ParseSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -77,12 +80,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2DAE592A2CB9D09D003FD41D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2DAE592B2CB9D09D003FD41D /* UserNotifications.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		7DC1822D2CB719E400ADEEBC = {
 			isa = PBXGroup;
 			children = (
 				7DC182382CB719E500ADEEBC /* ByteReal */,
 				7DC182492CB719F000ADEEBC /* ByteRealTests */,
 				7DC182532CB719F000ADEEBC /* ByteRealUITests */,
+				2DAE592A2CB9D09D003FD41D /* Frameworks */,
 				7DC182372CB719E500ADEEBC /* Products */,
 			);
 			sourceTree = "<group>";
