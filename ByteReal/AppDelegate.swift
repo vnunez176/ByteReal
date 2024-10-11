@@ -9,6 +9,9 @@ import UserNotifications
 
 
 class AppDelegate: NSObject, UIApplicationDelegate {
+    
+    @Published var navigateToHome = false // Use to trigger navigation in SwiftUI
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         
         //asks user for notification permission only first time when app is launced
@@ -34,7 +37,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         
         // Set the notification time to 6 PM
         var dateComponents = DateComponents()
-        dateComponents.hour = 2
+        dateComponents.hour = 18
         dateComponents.minute = 0
         
         // Create a trigger for every day at 6 PM
@@ -54,6 +57,21 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         
         
     }
+    
+    // Handle notification tap
+       func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+           print("Notification tapped")
+           
+           // Trigger navigation to the home screen
+           DispatchQueue.main.async {
+               self.navigateToHome = true // Update state to navigate to the home screen
+           }
+        
+           completionHandler()
+       }
+    
+    
+    
     
     // Show the notification even when the app is in the foreground
        func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
