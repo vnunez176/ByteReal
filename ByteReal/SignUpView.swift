@@ -8,11 +8,11 @@ import SwiftUI
 import ParseSwift
 
 struct SignUpView: View {
-    @Environment(\.presentationMode) var presentationMode  // To dismiss the sheet
+    @Environment(\.presentationMode) var presentationMode
     @State private var username: String = ""
     @State private var password: String = ""
     @State private var confirmPassword: String = ""
-    @State private var email: String = ""  // New email state variable
+    @State private var email: String = ""
     @State private var signUpError: String?
 
     var body: some View {
@@ -61,6 +61,22 @@ struct SignUpView: View {
     }
 
     private func signUp() {
+        // Log out current user before signing up
+        if let _ = User.current {
+            User.logout { result in
+                switch result {
+                case .success:
+                    performSignUp()  // After logging out, sign up the new user
+                case .failure(let error):
+                    signUpError = "Logout failed: \(error.localizedDescription)"
+                }
+            }
+        } else {
+            performSignUp()
+        }
+    }
+
+    private func performSignUp() {
         // Basic validation
         guard !username.isEmpty, !password.isEmpty, !email.isEmpty else {
             signUpError = "All fields are required."
@@ -83,7 +99,7 @@ struct SignUpView: View {
         newUser.password = password
         newUser.email = email
 
-        // Call the sign-up method (correct capitalization)
+        // Sign up the new user
         newUser.signup { result in
             switch result {
             case .success:
@@ -98,17 +114,9 @@ struct SignUpView: View {
         }
     }
 
-    // Simple email validation
     private func isValidEmail(_ email: String) -> Bool {
-        // Basic regex for email validation
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
         let predicate = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return predicate.evaluate(with: email)
-    }
-}
-
-struct SignUpView_Previews: PreviewProvider {
-    static var previews: some View {
-        SignUpView()
     }
 }

@@ -14,7 +14,8 @@ struct HomeView: View {
     @State private var newPostText = ""
     @State private var newPostImage: UIImage?
     @State private var showImagePicker = false
-
+    @Binding var isLoggedIn: Bool  // Accept binding
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -97,7 +98,6 @@ struct HomeView: View {
     }
 
     private func logoutUser() {
-        /*
         User.logout { result in
             switch result {
             case .success:
@@ -106,7 +106,6 @@ struct HomeView: View {
                 print("Logout failed: \(error.localizedDescription)")
             }
         }
-         */
     }
     
     
