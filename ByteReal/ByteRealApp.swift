@@ -10,9 +10,10 @@ import ParseSwift
 
 @main
 struct ByteRealApp: App {
+    // Connecting AppDelegate with SwiftUI
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @State private var isHomeViewActive = false
     init() {
-        // Connecting AppDelegate with SwiftUI
-        @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
         let serverConfigUrl = URL(filePath: "https://parseapi.back4app.com")
 //        ParseConfiguration(applicationId: "LLljWJoLMXtRvieB5IZAODCGGOoYNDjotzqYm5xW", clientKey: "YpCHLkbnTd5eXzW2Tam2QlC9efbm6xPK4di5JLS", serverURL: serverConfigUrl)
@@ -26,6 +27,16 @@ struct ByteRealApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .onReceive(appDelegate.$navigateToHome) { navigateToHome in
+                                      if navigateToHome {
+                                          isHomeViewActive = true // Update state to navigate to HomeView
+                                      }
+                                  }
+                                  .background(
+                                      NavigationLink(destination: HomeView(), isActive: $isHomeViewActive) {
+                                          EmptyView()
+                                      }
+                                      )
         }
     }
 }
