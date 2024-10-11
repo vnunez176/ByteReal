@@ -8,21 +8,37 @@
 import ParseSwift
 import SwiftUI
 
-struct User: ParseUser {
+public struct User: ParseUser {
     // Required properties by ParseUser
-    var objectId: String?
-    var username: String?
-    var email: String?
-    var password: String?
+    public var objectId: String?
+    public var username: String?
+    public var email: String?
+    public var password: String?
     
     // Optional properties
-    var emailVerified: Bool?
-    var authData: [String: [String: String]?]?
-    var originalData: Data?
-    var ACL: ParseSwift.ParseACL?
+    public var emailVerified: Bool?
+    public var authData: [String: [String: String]?]?
+    public var originalData: Data?
+    public var ACL: ParseSwift.ParseACL?
     
     // Required by ParseUser
-    var createdAt: Date?
-    var updatedAt: Date?
+    public var createdAt: Date?
+    public var updatedAt: Date?
+    public var lastPostDate: Date?
+
+    // Public initializer
+    public init() {
+        self.objectId = nil
+        self.username = nil
+        self.email = nil
+        self.password = nil
+        self.emailVerified = nil
+        self.authData = nil
+        self.originalData = nil
+        self.ACL = nil
+        self.createdAt = nil
+        self.updatedAt = nil
+        self.lastPostDate = nil
+    }
 }
 
