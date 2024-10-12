@@ -13,16 +13,16 @@ struct PostView: View {
     var onDelete: (Post) -> Void
     var onEdit: (Post) -> Void
 
-    // Assuming you have a way to access the current user
+    
     var currentUser: User? {
-        return User.current // Adjust this according to your user management
+        return User.current
     }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             // Display the author's name
             if let author = post.user?.username {
-                Text(author)  // Show the username of the author
+                Text(author)
                     .font(.subheadline)
                     .foregroundColor(.gray)
             }
@@ -35,16 +35,16 @@ struct PostView: View {
             }
 
             Text(post.text)
-                .font(.system(size: 16)) // Use the default system font for text
+                .font(.system(size: 16))
                 .padding(10)
-                .background(Color(.systemGray6)) // Light gray background for the post
+                .background(Color(.systemGray6))
                 .cornerRadius(8)
 
             if let codeSnippet = post.codeSnippet {
                 Text(codeSnippet)
-                    .font(.custom("Menlo", size: 14)) // Menlo font for code
+                    .font(.custom("Menlo", size: 14))
                     .padding(10)
-                    .background(Color(.systemGray5)) // Slightly darker gray for code snippet
+                    .background(Color(.systemGray5))
                     .cornerRadius(8)
                     .padding(.top, 5)
             }

@@ -30,7 +30,7 @@ struct CodeTextView: UIViewRepresentable {
     func makeUIView(context: Context) -> UITextView {
         let textView = UITextView()
         textView.delegate = context.coordinator
-        textView.font = UIFont(name: "Menlo", size: 14) // Use a monospace font for code
+        textView.font = UIFont(name: "Menlo", size: 14) 
         textView.layer.borderColor = UIColor.gray.cgColor
         textView.layer.borderWidth = 1
         textView.layer.cornerRadius = 8

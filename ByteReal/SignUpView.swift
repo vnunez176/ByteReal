@@ -19,26 +19,26 @@ struct SignUpView: View {
         NavigationView {
             ZStack {
                 // Background color
-                Color.black.edgesIgnoringSafeArea(.all) // Black background
+                Color.black.edgesIgnoringSafeArea(.all)
                 
                 VStack(spacing: 20) {
                     // Logo or Title (Optional)
                     Text("Create Account")
                         .font(.largeTitle)
                         .fontWeight(.bold)
-                        .foregroundColor(.purple) // Purple text for title
+                        .foregroundColor(.purple)
                         .padding(.top, 40)
 
                     // Username Field
                     TextField("Username", text: $username)
                         .padding()
-                        .background(Color.clear) // Transparent background
+                        .background(Color.clear)
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color.purple, lineWidth: 2) // Purple border
+                                .stroke(Color.purple, lineWidth: 2)
                         )
                         .autocapitalization(.none)
-                        .foregroundColor(.white) // Text color for input
+                        .foregroundColor(.white)
                         .placeholder(when: username.isEmpty) {
                             Text("Username").foregroundColor(.white.opacity(0.5))
                         }
@@ -46,14 +46,14 @@ struct SignUpView: View {
                     // Email Field
                     TextField("Email", text: $email)
                         .padding()
-                        .background(Color.clear) // Transparent background
+                        .background(Color.clear)
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color.purple, lineWidth: 2) // Purple border
+                                .stroke(Color.purple, lineWidth: 2)
                         )
                         .keyboardType(.emailAddress)
                         .autocapitalization(.none)
-                        .foregroundColor(.white) // Text color for input
+                        .foregroundColor(.white)
                         .placeholder(when: email.isEmpty) {
                             Text("Email").foregroundColor(.white.opacity(0.5))
                         }
@@ -61,12 +61,12 @@ struct SignUpView: View {
                     // Password Field
                     SecureField("Password", text: $password)
                         .padding()
-                        .background(Color.clear) // Transparent background
+                        .background(Color.clear)
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color.purple, lineWidth: 2) // Purple border
+                                .stroke(Color.purple, lineWidth: 2)
                         )
-                        .foregroundColor(.white) // Text color for input
+                        .foregroundColor(.white)
                         .placeholder(when: password.isEmpty) {
                             Text("Password").foregroundColor(.white.opacity(0.5))
                         }
@@ -74,12 +74,12 @@ struct SignUpView: View {
                     // Confirm Password Field
                     SecureField("Confirm Password", text: $confirmPassword)
                         .padding()
-                        .background(Color.clear) // Transparent background
+                        .background(Color.clear)
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color.purple, lineWidth: 2) // Purple border
+                                .stroke(Color.purple, lineWidth: 2)
                         )
-                        .foregroundColor(.white) // Text color for input
+                        .foregroundColor(.white)
                         .placeholder(when: confirmPassword.isEmpty) {
                             Text("Confirm Password").foregroundColor(.white.opacity(0.5))
                         }
@@ -96,16 +96,16 @@ struct SignUpView: View {
                         Text("Sign Up")
                             .frame(maxWidth: .infinity)
                             .padding()
-                            .background(Color.purple) // Purple background
+                            .background(Color.purple)
                             .foregroundColor(.white)
                             .cornerRadius(10)
-                            .font(.headline) // Font style for button
+                            .font(.headline)
                     }
                     .padding(.horizontal)
                 }
-                .padding() // Optional: Add some padding to the VStack
+                .padding()
             }
-            .navigationTitle("") // Hide the title
+            .navigationTitle("")
             .navigationBarItems(trailing: Button("Done") {
                 presentationMode.wrappedValue.dismiss()
             })
@@ -118,7 +118,7 @@ struct SignUpView: View {
             User.logout { result in
                 switch result {
                 case .success:
-                    performSignUp()  // After logging out, sign up the new user
+                    performSignUp()
                 case .failure(let error):
                     signUpError = "Logout failed: \(error.localizedDescription)"
                 }

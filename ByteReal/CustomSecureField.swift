@@ -30,13 +30,13 @@ struct CustomSecureField: UIViewRepresentable {
         let textField = UITextField()
         textField.isSecureTextEntry = true
         textField.placeholder = placeholder
-        textField.textContentType = .none  // Disable strong password suggestions
+        textField.textContentType = .none
         textField.autocorrectionType = .no
         textField.spellCheckingType = .no
         textField.delegate = context.coordinator
 
         // Add similar styling to match SwiftUI's default
-        textField.borderStyle = .roundedRect  // Add rounded border
+        textField.borderStyle = .roundedRect
         textField.layer.cornerRadius = 8
         textField.layer.borderWidth = 1
         textField.layer.borderColor = UIColor.systemGray4.cgColor
