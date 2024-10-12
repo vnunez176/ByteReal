@@ -10,11 +10,11 @@ import ParseSwift
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     
-    @Published var navigateToHome = false // Use to trigger navigation in SwiftUI
+    @Published var navigateToHome = false
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         
-        //asks user for notification permission only first time when app is launced
+       
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
             if granted {
                 print("Permission granted")
@@ -23,8 +23,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             }
         }
         
-        sendDailyNotification() // Schedule the 6 PM notification
-    
+        sendDailyNotification()
         ParseSwift.initialize(applicationId: "LLljWJoLMXtRvieB5IZAODCGGOoYNDjotzqYm5xW",
                               clientKey: "YpCHLkbnTd5eXzW2Tam2QlC9efbm6xPK4di5JLSV",
                               serverURL: URL(string: "https://parseapi.back4app.com")!)
@@ -32,7 +31,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         return true
     }
     
-    //function to schedule notification at 6pm everyday
+
     func sendDailyNotification(){
         let notificationContent = UNMutableNotificationContent()
         notificationContent.title = "ByteReal Time!"
@@ -41,8 +40,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         
         // Set the notification time to 6 PM
         var dateComponents = DateComponents()
-        dateComponents.hour = 18
-        dateComponents.minute = 0
         
         // Create a trigger for every day at 6 PM
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
@@ -68,7 +65,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
            
            // Trigger navigation to the home screen
            DispatchQueue.main.async {
-               self.navigateToHome = true // Update state to navigate to the home screen
+               self.navigateToHome = true
            }
         
            completionHandler()

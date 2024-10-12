@@ -15,9 +15,9 @@ public struct Post: ParseObject {
     // Required fields
     public var objectId: String?
     public var text: String
-    public var codeSnippet: String? // Optional code snippet property
+    public var codeSnippet: String?
     public var isPrivate: Bool
-    public var user: User? // Relation to User
+    public var user: User? 
     public var createdAt: Date?
     public var updatedAt: Date?
     

@@ -3,8 +3,8 @@ import ParseSwift
 
 struct ProfileView: View {
     @State private var userPosts: [Post] = []
-    @State private var showDeleteConfirmation = false // Trigger delete confirmation
-    @State private var postToDelete: Post? // Store post to delete
+    @State private var showDeleteConfirmation = false
+    @State private var postToDelete: Post?
     @State private var errorMessage: String?
     @State private var showAlert = false
 
@@ -40,7 +40,7 @@ struct ProfileView: View {
                         }
                     },
                     secondaryButton: .cancel {
-                        self.postToDelete = nil // Reset postToDelete if canceled
+                        self.postToDelete = nil 
                     }
                 )
             }

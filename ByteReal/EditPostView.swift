@@ -11,7 +11,7 @@ struct EditPostView: View {
     var post: Post
     @Binding var isPresented: Bool
     var onSave: (Post) -> Void
-    var onDelete: (Post) -> Void // Callback for delete action
+    var onDelete: (Post) -> Void
 
     @State private var editedText: String
     @State private var editedCodeSnippet: String
@@ -40,8 +40,8 @@ struct EditPostView: View {
                 },
                 trailing: HStack {
                     Button("Delete") {
-                        onDelete(post) // Call the delete callback
-                        isPresented = false // Dismiss the view
+                        onDelete(post)
+                        isPresented = false
                     }
                     .foregroundColor(.red)
 
@@ -49,10 +49,10 @@ struct EditPostView: View {
                         var updatedPost = post
                         updatedPost.text = editedText
                         updatedPost.codeSnippet = editedCodeSnippet
-                        onSave(updatedPost) // Save changes
-                        isPresented = false // Dismiss the view
+                        onSave(updatedPost)
+                        isPresented = false
                     }
-                    .disabled(editedText.isEmpty) // Disable if text is empty
+                    .disabled(editedText.isEmpty) 
                 }
             )
         }

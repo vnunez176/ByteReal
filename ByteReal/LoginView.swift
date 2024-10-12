@@ -11,26 +11,26 @@ import ParseSwift
 struct SplashScreen: View {
     var body: some View {
         ZStack {
-            Color.black // Black background
+            Color.black
                 .edgesIgnoringSafeArea(.all)
             
             // Add logo image
-            Image("ByteReal") // Use the name of your PNG file (without the extension)
+            Image("ByteReal")
                 .resizable()
                 .scaledToFit()
-                .frame(width: 150, height: 150) // Set your desired width and height
+                .frame(width: 150, height: 150)
         }
     }
 }
 
 struct LoginView: View {
-    @Binding var isLoggedIn: Bool  // Accept binding
+    @Binding var isLoggedIn: Bool
     @State private var username: String = ""
     @State private var password: String = ""
     @State private var showingSignUp = false
     @State private var loginError: String?
     
-    @State private var showSplash = true // Control splash screen display
+    @State private var showSplash = true
 
     var body: some View {
         ZStack {
@@ -39,76 +39,76 @@ struct LoginView: View {
                 SplashScreen()
                     .onAppear {
                         // Delay before showing the login screen
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { // Adjust the duration as needed
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                             withAnimation {
-                                showSplash = false // Hide splash screen
+                                showSplash = false
                             }
                         }
                     }
             } else {
-                // Set the background color to black
+              
                 Color.black
-                    .edgesIgnoringSafeArea(.all) // Extend color to the edges
+                    .edgesIgnoringSafeArea(.all)
                 
                 VStack {
-                    Spacer().frame(height: 30) // Reduce space above the logo to move it up more
+                    Spacer().frame(height: 30)
                     
                     // Add logo image
-                    Image("ByteReal") // Use the name of your PNG file (without the extension)
+                    Image("ByteReal")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 150, height: 150) // Set your desired width and height
+                        .frame(width: 150, height: 150)
                     
                     // Custom Text Field for Username
                     TextField("Username", text: $username)
                         .padding()
-                        .background(Color.clear) // Transparent background
+                        .background(Color.clear)
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color.white, lineWidth: 1) // Border around the text field
+                                .stroke(Color.white, lineWidth: 1)
                         )
                         .autocapitalization(.none)
-                        .foregroundColor(.white) // Text color for input
-                        .font(.system(size: 18, weight: .medium)) // Set custom font size and weight
-                        .placeholder(when: username.isEmpty) { // Placeholder modifier
-                            Text("Username").foregroundColor(.white.opacity(0.5)) // Placeholder color
-                                .font(.system(size: 18, weight: .medium)) // Set placeholder font size and weight
+                        .foregroundColor(.white)
+                        .font(.system(size: 18, weight: .medium))
+                        .placeholder(when: username.isEmpty) {
+                            Text("Username").foregroundColor(.white.opacity(0.5))
+                                .font(.system(size: 18, weight: .medium))
                         }
-                        .frame(width: 300) // Set a fixed width for the username field
+                        .frame(width: 300)
                     
                     // Custom Secure Field for Password
                     SecureField("Password", text: $password)
                         .padding()
-                        .background(Color.clear) // Transparent background
+                        .background(Color.clear)
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color.white, lineWidth: 1) // Border around the secure field
+                                .stroke(Color.white, lineWidth: 1)
                         )
-                        .foregroundColor(.white) // Text color for input
-                        .font(.system(size: 18, weight: .medium)) // Set custom font size and weight
-                        .placeholder(when: password.isEmpty) { // Placeholder modifier
-                            Text("Password").foregroundColor(.white.opacity(0.5)) // Placeholder color
-                                .font(.system(size: 18, weight: .medium)) // Set placeholder font size and weight
+                        .foregroundColor(.white)
+                        .font(.system(size: 18, weight: .medium))
+                        .placeholder(when: password.isEmpty) {
+                            Text("Password").foregroundColor(.white.opacity(0.5))
+                                .font(.system(size: 18, weight: .medium))
                         }
-                        .frame(width: 300) // Set a fixed width for the password field
+                        .frame(width: 300)
                     
                     if let error = loginError {
                         Text(error)
                             .foregroundColor(.red)
                             .padding()
-                            .font(.system(size: 14, weight: .regular)) // Set error text style
+                            .font(.system(size: 14, weight: .regular))
                     }
 
-                    // Create a horizontal stack for the buttons
-                    HStack(spacing: 20) { // Add spacing between buttons
+      
+                    HStack(spacing: 20) {
                         Button(action: login) {
                             Text("Log In")
                                 .padding()
-                                .frame(width: 120) // Set a fixed width for the button
-                                .background(Color.purple) // Change to purple
+                                .frame(width: 120)
+                                .background(Color.purple)
                                 .foregroundColor(.white)
                                 .cornerRadius(10)
-                                .font(.system(size: 18, weight: .bold)) // Set custom button font
+                                .font(.system(size: 18, weight: .bold))
                         }
                         
                         Button(action: {
@@ -116,18 +116,18 @@ struct LoginView: View {
                         }) {
                             Text("Sign Up")
                                 .padding()
-                                .frame(width: 120) // Set a fixed width for the button
-                                .background(Color.purple) // Change to purple
+                                .frame(width: 120)
+                                .background(Color.purple)
                                 .foregroundColor(.white)
                                 .cornerRadius(10)
-                                .font(.system(size: 18, weight: .bold)) // Set custom button font
+                                .font(.system(size: 18, weight: .bold))
                         }
                     }
-                    .padding(.top) // Optional padding to separate from text fields
-                    .padding(.horizontal) // Padding for the HStack
+                    .padding(.top)
+                    .padding(.horizontal)
                     
                 }
-                .padding() // Optional: Add some padding to the VStack
+                .padding()
             }
         }
         .navigationTitle("Login")
@@ -161,7 +161,7 @@ extension View {
             self
             if shouldShow {
                 content()
-                    .padding(.leading, 5) // Adjust padding if necessary
+                    .padding(.leading, 5) 
             }
         }
     }

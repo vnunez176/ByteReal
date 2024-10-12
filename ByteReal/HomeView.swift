@@ -19,7 +19,7 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                Color.black.edgesIgnoringSafeArea(.all) // Background color
+                Color.black.edgesIgnoringSafeArea(.all)
                 
                 VStack {
                     if hasPostedToday {
@@ -52,12 +52,12 @@ struct HomeView: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 100, height: 100)
-                                .foregroundColor(.gray) // Change icon color
+                                .foregroundColor(.gray)
                                 .blur(radius: 10)
                             
                             Text("You must post today to view posts.")
                                 .font(.headline)
-                                .foregroundColor(.purple) // Change text color
+                                .foregroundColor(.purple)
                                 .padding(.bottom)
 
                             postInputSection
@@ -68,14 +68,14 @@ struct HomeView: View {
                 }
                 .padding()
                 .navigationTitle("Home").accentColor(.purple)
-                .navigationBarTitleDisplayMode(.inline) // Display title inline
+                .navigationBarTitleDisplayMode(.inline)
                 .navigationBarItems(trailing: NavigationLink("Profile", destination: ProfileView()))
                 .alert(isPresented: $showAlert) {
                     Alert(title: Text("Error"), message: Text(errorMessage ?? ""), dismissButton: .default(Text("OK")))
                 }
             }
         }
-        .accentColor(.purple) // Change the navigation title color to purple
+        .accentColor(.purple)
         .onAppear {
             fetchPosts()
             checkPostReset()
@@ -102,7 +102,7 @@ struct HomeView: View {
                 .cornerRadius(10)
 
             CodeTextView(codeSnippet: $newPostCode, lineNumbers: true)
-                .frame(height: 200) // Set height for the code input
+                .frame(height: 200) 
                 .background(Color.white)
                 .cornerRadius(10)
 
@@ -217,11 +217,11 @@ struct HomeView: View {
         post.save { result in
             switch result {
             case .success:
-                fetchPosts() // Refresh posts after successful update
-                newPostText = "" // Clear the text field
-                newPostCode = "" // Clear the code snippet field
-                isEditing = false // Close edit mode
-                editingPost = nil // Reset editing post
+                fetchPosts()
+                newPostText = ""
+                newPostCode = ""
+                isEditing = false
+                editingPost = nil
             case .failure(let error):
                 errorMessage = "Failed to update post: \(error.localizedDescription)"
                 showAlert = true
