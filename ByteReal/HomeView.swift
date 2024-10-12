@@ -213,11 +213,8 @@ struct HomeView: View {
     }
 
     private func updatePost(post: Post) {
-        var updatedPost = post
-        updatedPost.text = newPostText
-        updatedPost.codeSnippet = newPostCode
-        
-        updatedPost.save { result in
+      
+        post.save { result in
             switch result {
             case .success:
                 fetchPosts() // Refresh posts after successful update
