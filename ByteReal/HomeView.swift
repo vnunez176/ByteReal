@@ -1,10 +1,3 @@
-//
-//  HomeView.swift
-//  ByteReal
-//
-//  Created by Victoria Nunez on 10/9/24.
-//
-
 import SwiftUI
 import ParseSwift
 
@@ -25,74 +18,64 @@ struct HomeView: View {
 
     var body: some View {
         NavigationView {
-            VStack {
-                if hasPostedToday {
-                    List(posts) { post in
-                        PostView(post: post, onDelete: { post in
-                            self.postToDelete = post
-                            self.showDeleteConfirmation = true
-                        }, onEdit: editPost)
-                    }
-                    .alert(isPresented: $showDeleteConfirmation) {
-                        Alert(
-                            title: Text("Delete Post"),
-                            message: Text("Are you sure you want to delete this post?"),
-                            primaryButton: .destructive(Text("Delete")) {
-                                if let postToDelete = self.postToDelete {
-                                    deletePost(post: postToDelete)
+            ZStack {
+                Color.black.edgesIgnoringSafeArea(.all) // Background color
+                
+                VStack {
+                    if hasPostedToday {
+                        List(posts) { post in
+                            PostView(post: post, onDelete: { post in
+                                self.postToDelete = post
+                                self.showDeleteConfirmation = true
+                            }, onEdit: editPost)
+                        }
+                        .alert(isPresented: $showDeleteConfirmation) {
+                            Alert(
+                                title: Text("Delete Post"),
+                                message: Text("Are you sure you want to delete this post?"),
+                                primaryButton: .destructive(Text("Delete")) {
+                                    if let postToDelete = self.postToDelete {
+                                        deletePost(post: postToDelete)
+                                    }
+                                },
+                                secondaryButton: .cancel {
+                                    self.postToDelete = nil
                                 }
-                            },
-                            secondaryButton: .cancel {
-                                self.postToDelete = nil
-                            }
-                        )
-                    }
-                    .refreshable {
-                        fetchPosts()
-                    }
-                } else {
-                    Image(systemName: "lock.fill")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 100, height: 100)
-                        .blur(radius: 10)
-                    Text("You must post today to view posts.")
-                        .font(.headline)
-                        .padding(.bottom)
+                            )
+                        }
+                        .refreshable {
+                            fetchPosts()
+                        }
+                    } else {
+                        VStack {
+                            Image(systemName: "lock.fill")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 100, height: 100)
+                                .foregroundColor(.gray) // Change icon color
+                                .blur(radius: 10)
+                            
+                            Text("You must post today to view posts.")
+                                .font(.headline)
+                                .foregroundColor(.purple) // Change text color
+                                .padding(.bottom)
 
-                    TextField("What's on your mind?", text: $newPostText)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .padding()
-
-                    // Using CodeTextView instead of a regular TextField for code snippet
-                    CodeTextView(codeSnippet: $newPostCode, lineNumbers: true)
-                        .frame(height: 200) // Set height for the code input
-
-                    Toggle("Make Post Public", isOn: $isPublic)
-                        .padding()
-
-                    Button(isEditing ? "Update" : "Post") {
-                        if isEditing, let editingPost = editingPost {
-                            updatePost(post: editingPost)
-                        } else {
-                            createPost()
+                            postInputSection
                         }
                     }
-                    .padding()
-                    .disabled(newPostText.isEmpty)
-                }
-
-                Button("Logout") {
-                    logoutUser()
+                    
+                    logoutButton
                 }
                 .padding()
-            }
-            .navigationTitle("Home")
-            .navigationBarItems(trailing: NavigationLink("Profile", destination: ProfileView()))
-            .alert(isPresented: $showAlert) {
-                Alert(title: Text("Error"), message: Text(errorMessage ?? ""), dismissButton: .default(Text("OK")))
+                .navigationTitle("Home").accentColor(.purple)
+                .navigationBarTitleDisplayMode(.inline) // Display title inline
+                .navigationBarItems(trailing: NavigationLink("Profile", destination: ProfileView()))
+                .alert(isPresented: $showAlert) {
+                    Alert(title: Text("Error"), message: Text(errorMessage ?? ""), dismissButton: .default(Text("OK")))
+                }
             }
         }
+        .accentColor(.purple) // Change the navigation title color to purple
         .onAppear {
             fetchPosts()
             checkPostReset()
@@ -108,6 +91,54 @@ struct HomeView: View {
                 })
             }
         }
+    }
+    
+    private var postInputSection: some View {
+        VStack(spacing: 15) {
+            TextField("What's on your mind?", text: $newPostText)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding()
+                .background(Color.white)
+                .cornerRadius(10)
+
+            CodeTextView(codeSnippet: $newPostCode, lineNumbers: true)
+                .frame(height: 200) // Set height for the code input
+                .background(Color.white)
+                .cornerRadius(10)
+
+            Toggle("Make Post Public", isOn: $isPublic)
+                .padding()
+                .foregroundColor(.purple)
+
+            Button(action: {
+                if isEditing, let editingPost = editingPost {
+                    updatePost(post: editingPost)
+                } else {
+                    createPost()
+                }
+            }) {
+                Text(isEditing ? "Update" : "Post")
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(newPostText.isEmpty ? Color.gray : Color.purple)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+            }
+            .disabled(newPostText.isEmpty)
+        }
+        .padding()
+    }
+
+    private var logoutButton: some View {
+        Button(action: logoutUser) {
+            Text("Logout")
+                .frame(maxWidth: .infinity)
+                .padding()
+                .background(Color.red)
+                .foregroundColor(.white)
+                .cornerRadius(10)
+        }
+        .padding(.top)
     }
 
     private func fetchPosts() {
@@ -255,3 +286,4 @@ struct HomeView: View {
         }
     }
 }
+

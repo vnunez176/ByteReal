@@ -1,10 +1,3 @@
-//
-//  ProfileView.swift
-//  ByteReal
-//
-//  Created by Victoria Nunez on 10/9/24.
-//
-
 import SwiftUI
 import ParseSwift
 
@@ -102,3 +95,4 @@ struct ProfileView: View {
         }
     }
 }
+
